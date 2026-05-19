@@ -1,0 +1,55 @@
+name: Update GitHub stats
+
+on:
+  schedule:
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    name: Refresh cached GitHub stats
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Run every two weeks
+        id: cadence
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] || [ $((10#$(date -u +%V) % 2)) -eq 0 ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping this week; stats update runs every two weeks."
+          fi
+
+      - name: Checkout repository
+        if: steps.cadence.outputs.should_run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        if: steps.cadence.outputs.should_run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Fetch latest GitHub stats
+        if: steps.cadence.outputs.should_run == 'true'
+        run: node scripts/update-github-stats.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Commit updated cache
+        if: steps.cadence.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/github-stats.json
+          if git diff --cached --quiet; then
+            echo "No GitHub stats changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update github stats cache" -- src/data/github-stats.json
+          git push

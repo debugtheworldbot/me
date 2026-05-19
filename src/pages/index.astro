@@ -9,6 +9,10 @@ import Socials from "@/components/Socials.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
+import githubStats, {
+  formatGitHubCount,
+  getRepoStars,
+} from "@/utils/githubStats";
 
 const { socials } = config;
 
@@ -18,8 +22,14 @@ const t = useTranslations(locale);
 const homePath = getRelativeLocaleUrl(locale, "");
 
 const stats = [
-  { label: "public repos", value: "147" },
-  { label: "GitHub followers", value: "44" },
+  {
+    label: "public repos",
+    value: formatGitHubCount(githubStats.profile.publicRepos),
+  },
+  {
+    label: "GitHub followers",
+    value: formatGitHubCount(githubStats.profile.followers),
+  },
   { label: "home base", value: "Shanghai" },
 ];
 
@@ -37,7 +47,7 @@ const selectedProjects = [
     live: "https://keystats.vercel.app",
     description: "Keyboard and mouse analytics for macOS and Windows.",
     language: "Swift",
-    stars: "1.3k",
+    stars: getRepoStars("keyStats"),
   },
   {
     name: "ai-credit",
@@ -46,14 +56,14 @@ const selectedProjects = [
     description:
       "CLI for tracking and analyzing AI coding assistants' contributions inside a codebase.",
     language: "TypeScript",
-    stars: "77",
+    stars: getRepoStars("ai-credit"),
   },
   {
     name: "msync",
     href: "https://github.com/debugtheworldbot/msync",
     description: "Syncs Claude Code memories into Claude clients.",
     language: "JavaScript",
-    stars: "52",
+    stars: getRepoStars("msync"),
   },
   {
     name: "chromegemini",
@@ -62,7 +72,7 @@ const selectedProjects = [
     description:
       "Chrome AI test page for running Gemini Nano locally in the browser.",
     language: "TypeScript",
-    stars: "82",
+    stars: getRepoStars("chromegemini"),
   },
 ];
 ---

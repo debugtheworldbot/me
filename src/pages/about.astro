@@ -6,6 +6,10 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import Main from "@/components/Main.astro";
 import Footer from "@/components/Footer.astro";
 import config from "@/config";
+import githubStats, {
+  formatGitHubCount,
+  formatGitHubDate,
+} from "@/utils/githubStats";
 
 const about = await getEntry("pages", "about");
 
@@ -29,6 +33,28 @@ const { Content } = await render(about);
   <Breadcrumb />
 
   <Main pageTitle={about.data.title} class="app-prose">
+    <h2>Profile</h2>
+    <ul>
+      <li>
+        GitHub: <a href="https://github.com/debugtheworldbot"
+          >debugtheworldbot</a
+        >
+      </li>
+      <li>
+        X: <a href="https://x.com/_antivini_">_antivini_</a>
+      </li>
+      <li>
+        Organization: <a href="https://github.com/iftechio">@iftechio</a>
+      </li>
+      <li>Location: Shanghai</li>
+      <li>
+        Public GitHub footprint: {
+          formatGitHubCount(githubStats.profile.publicRepos)
+        } repositories and {formatGitHubCount(githubStats.profile.followers)} followers
+        as of {formatGitHubDate(githubStats.fetchedAt)}
+      </li>
+    </ul>
+
     <Content />
   </Main>
 

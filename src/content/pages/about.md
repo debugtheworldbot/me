@@ -7,14 +7,6 @@ I am **pipizhu**, online as [debugtheworldbot](https://github.com/debugtheworldb
 
 My work tends to sit close to daily development practice: measuring what tools actually do, making local automation easier to carry between apps, and turning tiny product ideas into shippable public projects.
 
-## Profile
-
-- GitHub: [debugtheworldbot](https://github.com/debugtheworldbot)
-- X: [_antivini_](https://x.com/_antivini_)
-- Organization: [@iftechio](https://github.com/iftechio)
-- Location: Shanghai
-- Public GitHub footprint: 147 repositories and 44 followers as of May 19, 2026
-
 ## Current Focus
 
 - AI-assisted engineering and agent workflows

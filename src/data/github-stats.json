@@ -1,0 +1,22 @@
+{
+  "user": "debugtheworldbot",
+  "fetchedAt": "2026-05-19T06:40:58.373Z",
+  "profile": {
+    "publicRepos": 147,
+    "followers": 44
+  },
+  "repositories": {
+    "keyStats": {
+      "stars": 1316
+    },
+    "ai-credit": {
+      "stars": 77
+    },
+    "msync": {
+      "stars": 52
+    },
+    "chromegemini": {
+      "stars": 82
+    }
+  }
+}

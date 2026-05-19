@@ -10,6 +10,7 @@
     "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
     "preview": "astro preview",
     "sync": "astro sync",
+    "stats:update": "node scripts/update-github-stats.mjs",
     "astro": "astro",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
