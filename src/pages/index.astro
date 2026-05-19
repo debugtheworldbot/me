@@ -1,28 +1,70 @@
 ---
-import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Socials from "@/components/Socials.astro";
-import Card from "@/components/Card.astro";
 import LinkButton from "@/components/LinkButton.astro";
-import { getSortedPosts } from "@/utils/getSortedPosts";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
-const { socials, posts: postsConfig } = config;
+const { socials } = config;
 
 const locale = Astro.currentLocale ?? config.site.lang;
 const t = useTranslations(locale);
 
-const posts = await getCollection("posts");
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 const homePath = getRelativeLocaleUrl(locale, "");
+
+const stats = [
+  { label: "public repos", value: "147" },
+  { label: "GitHub followers", value: "44" },
+  { label: "home base", value: "Shanghai" },
+];
+
+const focusAreas = [
+  "AI-assisted engineering",
+  "macOS and desktop utilities",
+  "browser AI experiments",
+  "small tools that make developer workflows visible",
+];
+
+const selectedProjects = [
+  {
+    name: "keyStats",
+    href: "https://github.com/debugtheworldbot/keyStats",
+    live: "https://keystats.vercel.app",
+    description: "Keyboard and mouse analytics for macOS and Windows.",
+    language: "Swift",
+    stars: "1.3k",
+  },
+  {
+    name: "ai-credit",
+    href: "https://github.com/debugtheworldbot/ai-credit",
+    live: "https://ai-credits.vercel.app",
+    description:
+      "CLI for tracking and analyzing AI coding assistants' contributions inside a codebase.",
+    language: "TypeScript",
+    stars: "77",
+  },
+  {
+    name: "msync",
+    href: "https://github.com/debugtheworldbot/msync",
+    description: "Syncs Claude Code memories into Claude clients.",
+    language: "JavaScript",
+    stars: "52",
+  },
+  {
+    name: "chromegemini",
+    href: "https://github.com/debugtheworldbot/chromegemini",
+    live: "https://chromeai.org",
+    description:
+      "Chrome AI test page for running Gemini Nano locally in the browser.",
+    language: "TypeScript",
+    stars: "82",
+  },
+];
 ---
 
 <Layout>
@@ -33,40 +75,70 @@ const homePath = getRelativeLocaleUrl(locale, "");
     data-home-path={homePath}
     class="app-layout"
   >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
-      </h1>
-      <a
-        target="_blank"
-        href={getRelativeLocaleUrl(locale, "rss.xml")}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+    <section id="hero" class="border-border border-b pt-8 pb-8 sm:pt-12">
+      <div class="flex flex-col gap-8 sm:flex-row sm:items-center">
+        <div class="flex-1">
+          <p
+            class="text-accent mb-3 text-sm font-semibold tracking-wide uppercase"
+          >
+            debugtheworldbot / pipizhu
+          </p>
+          <h1 class="my-4 text-4xl leading-tight font-bold sm:text-5xl">
+            I build AI tools and developer utilities.
+          </h1>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <LinkButton
+              href="https://github.com/debugtheworldbot"
+              target="_blank"
+              rel="noreferrer"
+              class="border-border rounded-md border px-4 py-2 font-medium"
+            >
+              GitHub
+              <IconArrowRight class="inline-block rtl:-rotate-180" />
+            </LinkButton>
+            <LinkButton
+              href={getRelativeLocaleUrl(locale, "about")}
+              class="border-border rounded-md border px-4 py-2 font-medium"
+            >
+              About
+              <IconArrowRight class="inline-block rtl:-rotate-180" />
+            </LinkButton>
+          </div>
+        </div>
 
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p class="mt-2">
-        Read the blog posts or check
-        <LinkButton
-          class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton> for more info.
-      </p>
+        <div class="sm:w-44">
+          <Image
+            src="https://avatars.githubusercontent.com/u/62830430?v=4"
+            alt="debugtheworldbot GitHub avatar"
+            width={176}
+            height={176}
+            loading="eager"
+            class="border-border bg-muted mx-auto size-36 rounded-full border object-cover sm:size-44"
+          />
+        </div>
+      </div>
+
+      <dl class="mt-8 grid gap-3 sm:grid-cols-3">
+        {
+          stats.map(item => (
+            <div class="border-border rounded-md border px-4 py-3">
+              <dt class="text-foreground/60 text-sm">{item.label}</dt>
+              <dd class="mt-1 text-2xl font-semibold">{item.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <ul class="mt-6 flex flex-wrap gap-2">
+        {
+          focusAreas.map(area => (
+            <li class="bg-muted text-foreground/80 rounded-md px-3 py-1 text-sm">
+              {area}
+            </li>
+          ))
+        }
+      </ul>
+
       {
         socials.length > 0 && (
           <div class="mt-4 flex max-sm:flex-col sm:items-center">
@@ -79,41 +151,76 @@ const homePath = getRelativeLocaleUrl(locale, "");
       }
     </section>
 
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
+    <section id="projects" class="border-border border-b pt-12 pb-8">
+      <div
+        class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between"
+      >
+        <div>
+          <p class="text-accent text-sm font-semibold tracking-wide uppercase">
+            selected projects
+          </p>
+          <h2 class="mt-2 text-2xl font-semibold tracking-wide">
+            Tools with public traction
+          </h2>
+        </div>
+        <LinkButton
+          href="https://github.com/debugtheworldbot?tab=repositories"
+          target="_blank"
+          rel="noreferrer"
+          class="font-medium"
         >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+          All repositories
+          <IconArrowRight class="inline-block rtl:-rotate-180" />
+        </LinkButton>
+      </div>
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
-          <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          selectedProjects.map(project => (
+            <article class="border-border rounded-md border p-5">
+              <div class="flex flex-wrap items-start justify-between gap-3">
+                <h3 class="text-xl font-semibold">
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="hover:text-accent"
+                  >
+                    {project.name}
+                  </a>
+                </h3>
+                <span class="text-foreground/60 text-sm">
+                  {project.language} / {project.stars} stars
+                </span>
+              </div>
+              <p class="text-foreground/75 mt-3 leading-7">
+                {project.description}
+              </p>
+              <div class="mt-4 flex flex-wrap gap-4 text-sm font-medium">
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="hover:text-accent"
+                >
+                  Source
+                </a>
+                {project.live && (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="hover:text-accent"
+                  >
+                    Live
+                  </a>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
 
     <div class="my-8 text-center">
       <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>

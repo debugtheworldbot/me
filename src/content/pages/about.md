@@ -1,37 +1,54 @@
 ---
-title: "About"
-description: "A bit about me and this blog."
+title: "About pipizhu"
+description: "About debugtheworldbot, public projects, and current focus areas."
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+I am **pipizhu**, online as [debugtheworldbot](https://github.com/debugtheworldbot), a Shanghai-based maker building AI coding tools, desktop utilities, browser experiments, and small workflow products.
 
-![Astro Paper](@/assets/images/astropaper-og.jpg)
+My work tends to sit close to daily development practice: measuring what tools actually do, making local automation easier to carry between apps, and turning tiny product ideas into shippable public projects.
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+## Profile
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+- GitHub: [debugtheworldbot](https://github.com/debugtheworldbot)
+- X: [_antivini_](https://x.com/_antivini_)
+- Organization: [@iftechio](https://github.com/iftechio)
+- Location: Shanghai
+- Public GitHub footprint: 147 repositories and 44 followers as of May 19, 2026
 
-## Features
+## Current Focus
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+- AI-assisted engineering and agent workflows
+- macOS and cross-platform desktop utilities
+- Browser-native AI experiments
+- Developer productivity tools with clear, measurable output
+- Lightweight distribution and release infrastructure for small products
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+## Selected Projects
 
-and so much more.
+### [keyStats](https://github.com/debugtheworldbot/keyStats)
 
-## Show your support
+Keyboard and mouse analytics for macOS and Windows. It is the largest public project on the profile, with more than 1.3k GitHub stars, plus separate Homebrew and Scoop packaging work.
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+### [ai-credit](https://github.com/debugtheworldbot/ai-credit)
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
+A command-line tool for tracking and analyzing how AI coding assistants contribute to a repository.
 
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
+### [chromegemini](https://github.com/debugtheworldbot/chromegemini)
 
-Kyay zuu! 🙏🏼
+Chrome AI test page for experimenting with Gemini Nano running locally in the browser.
+
+### [msync](https://github.com/debugtheworldbot/msync)
+
+Syncs Claude Code memories into Claude clients, making agent context easier to reuse across surfaces.
+
+### [text-encode](https://github.com/debugtheworldbot/text-encode)
+
+A small creative tool that encodes an image into a target text shape.
+
+## Recently Shipped Around
+
+- [me](https://github.com/debugtheworldbot/me): this Astro-powered profile site.
+- [scoop-keystats](https://github.com/debugtheworldbot/scoop-keystats): Scoop bucket for KeyStats distribution.
+- [homebrew-keystats](https://github.com/debugtheworldbot/homebrew-keystats): Homebrew packaging for KeyStats.
+- [assetLens](https://github.com/debugtheworldbot/assetLens): an asset review and inspection surface.
+- [fix-pr-comments](https://github.com/debugtheworldbot/fix-pr-comments): a Claude Code skill for handling unresolved GitHub PR review threads.

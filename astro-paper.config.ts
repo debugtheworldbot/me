@@ -2,14 +2,15 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://astro-paper.pages.dev/",
-    title: "AstroPaper",
-    description: "A minimal, responsive and SEO-friendly Astro blog theme.",
-    author: "Sat Naing",
-    profile: "https://satna.ing",
-    ogImage: "default-og.jpg",
+    url: "https://me-plum-nine.vercel.app",
+    title: "pipizhu",
+    description:
+      "Maker in Shanghai building AI coding tools, macOS utilities, browser experiments, and small developer workflows.",
+    author: "pipizhu",
+    profile: "https://github.com/debugtheworldbot",
+    ogImage: "profile-og.png",
     lang: "en",
-    timezone: "Asia/Bangkok",
+    timezone: "Asia/Shanghai",
     dir: "ltr",
   },
   posts: {
@@ -24,15 +25,21 @@ export default defineAstroPaperConfig({
     showBackButton: true,
     editPost: {
       enabled: true,
-      url: "https://github.com/satnaing/astro-paper/edit/main/",
+      url: "https://github.com/debugtheworldbot/me/edit/main/",
     },
     search: "pagefind",
   },
   socials: [
-    { name: "github",   url: "https://github.com/satnaing/astro-paper" },
-    { name: "x",        url: "https://x.com/username" },
-    { name: "linkedin", url: "https://www.linkedin.com/in/username/" },
-    { name: "mail",     url: "mailto:yourmail@gmail.com" },
+    {
+      name: "github",
+      url: "https://github.com/debugtheworldbot",
+      linkTitle: "debugtheworldbot on GitHub",
+    },
+    {
+      name: "x",
+      url: "https://x.com/_antivini_",
+      linkTitle: "_antivini_ on X",
+    },
   ],
   shareLinks: [
     { name: "whatsapp", url: "https://wa.me/?text=" },

@@ -50,6 +50,9 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  image: {
+    domains: ["avatars.githubusercontent.com"],
+  },
   fonts: [
     {
       name: "Google Sans Code",
