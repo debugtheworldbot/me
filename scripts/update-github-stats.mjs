@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 const owner = "debugtheworldbot";
@@ -29,6 +29,22 @@ async function getJson(url) {
   return response.json();
 }
 
+async function readExistingStats() {
+  try {
+    return JSON.parse(await readFile(outputPath, "utf8"));
+  } catch (error) {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  }
+}
+
+function stripFetchTimestamp(stats) {
+  if (!stats) return null;
+
+  const { fetchedAt: _fetchedAt, ...stableStats } = stats;
+  return stableStats;
+}
+
 const [profile, ...repositoryResponses] = await Promise.all([
   getJson(`https://api.github.com/users/${owner}`),
   ...repos.map(repo => getJson(`https://api.github.com/repos/${owner}/${repo}`)),
@@ -52,6 +68,19 @@ const stats = {
   },
   repositories,
 };
+
+const existingStats = await readExistingStats();
+const existingStableStats = stripFetchTimestamp(existingStats);
+const nextStableStats = stripFetchTimestamp(stats);
+
+if (
+  JSON.stringify(existingStableStats) === JSON.stringify(nextStableStats)
+) {
+  process.stdout.write(
+    `No GitHub stats changes for ${owner}; leaving ${outputPath} unchanged.\n`
+  );
+  process.exit(0);
+}
 
 await mkdir(dirname(outputPath), { recursive: true });
 await writeFile(outputPath, `${JSON.stringify(stats, null, 2)}\n`);
