@@ -13,6 +13,7 @@ import githubStats, {
   formatGitHubCount,
   getRepoStars,
 } from "@/utils/githubStats";
+import { getAssetPath } from "@/utils/withBase";
 
 const { socials } = config;
 
@@ -73,6 +74,81 @@ const selectedProjects = [
       "Chrome AI test page for running Gemini Nano locally in the browser.",
     language: "TypeScript",
     stars: getRepoStars("chromegemini"),
+  },
+];
+
+const dailyToolkit = [
+  {
+    name: "Raycast",
+    href: "https://www.raycast.com/",
+    logo: "https://www.google.com/s2/favicons?domain=raycast.com&sz=128",
+    category: "Launcher",
+  },
+  {
+    name: "Shottr",
+    href: "https://shottr.cc/",
+    logo: "https://www.google.com/s2/favicons?domain=shottr.cc&sz=128",
+    category: "Capture",
+  },
+  {
+    name: "Codex",
+    href: "https://openai.com/codex/",
+    logo: "https://www.google.com/s2/favicons?domain=openai.com&sz=128",
+    category: "Agents",
+  },
+  {
+    name: "cmux",
+    href: "https://cmux.com/",
+    logo: "https://www.google.com/s2/favicons?domain=cmux.com&sz=128",
+    category: "Agents",
+  },
+  {
+    name: "OpenUsage",
+    href: "https://www.openusage.ai/",
+    logo: getAssetPath("toolkit/openusage.png"),
+    category: "Usage",
+  },
+  {
+    name: "Zed",
+    href: "https://zed.dev/",
+    logo: "https://www.google.com/s2/favicons?domain=zed.dev&sz=128",
+    category: "Editor",
+  },
+  {
+    name: "Ghostty",
+    href: "https://ghostty.org/",
+    logo: "https://www.google.com/s2/favicons?domain=ghostty.org&sz=128",
+    category: "Terminal",
+  },
+  {
+    name: "Fork",
+    href: "https://fork.dev/",
+    logo: "https://www.google.com/s2/favicons?domain=fork.dev&sz=128",
+    category: "Git",
+  },
+  {
+    name: "OrbStack",
+    href: "https://orbstack.dev/",
+    logo: "https://www.google.com/s2/favicons?domain=orbstack.dev&sz=128",
+    category: "Dev env",
+  },
+  {
+    name: "TablePlus",
+    href: "https://tableplus.com/",
+    logo: "https://www.google.com/s2/favicons?domain=tableplus.com&sz=128",
+    category: "Data",
+  },
+  {
+    name: "Figma",
+    href: "https://www.figma.com/",
+    logo: "https://www.google.com/s2/favicons?domain=figma.com&sz=128",
+    category: "Design",
+  },
+  {
+    name: "LocalSend",
+    href: "https://localsend.org/",
+    logo: "https://www.google.com/s2/favicons?domain=localsend.org&sz=128",
+    category: "Transfer",
   },
 ];
 ---
@@ -227,6 +303,56 @@ const selectedProjects = [
                 )}
               </div>
             </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="toolkit" class="border-border border-b pt-12 pb-8">
+      <div
+        class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between"
+      >
+        <div>
+          <p class="text-accent text-sm font-semibold tracking-wide uppercase">
+            daily toolkit
+          </p>
+          <h2 class="mt-2 text-2xl font-semibold tracking-wide">
+            Apps I keep close
+          </h2>
+        </div>
+        <p class="text-accent text-sm font-semibold tracking-wide uppercase">
+          public-safe picks
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        {
+          dailyToolkit.map(tool => (
+            <a
+              href={tool.href}
+              target="_blank"
+              rel="noreferrer"
+              class="border-border group hover:border-accent/70 flex items-center gap-3 rounded-md border p-3 transition-colors"
+            >
+              <span class="flex size-10 shrink-0 items-center justify-center">
+                <img
+                  src={tool.logo}
+                  alt={`${tool.name} logo`}
+                  loading="lazy"
+                  width="28"
+                  height="28"
+                  class="size-7 rounded-sm object-contain"
+                />
+              </span>
+              <span class="min-w-0">
+                <span class="group-hover:text-accent block leading-tight font-semibold">
+                  {tool.name}
+                </span>
+                <span class="text-foreground/55 mt-0.5 block text-xs leading-tight">
+                  {tool.category}
+                </span>
+              </span>
+            </a>
           ))
         }
       </div>
